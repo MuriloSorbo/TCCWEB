@@ -1,0 +1,496 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+:root {
+  --red: #27AE60;
+  --white: #ffffff;
+  --dark: #707070;
+}
+body {
+  color: var(--dark);
+  background: var(--white);
+}
+i {
+  color: var(--dark);
+}
+i.material-icons {
+  font-size: 2.25vw;
+  margin-top: 1.3vw;
+  margin-left: 2vw;
+  cursor: pointer;
+}
+
+.logo2 {
+  width: 15vw;
+}
+
+.showAll {
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.showAll:hover {
+  color: #1233c5;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background: #e0e0e0;
+  transition: all 0.5s;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  color: var(--red);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.divider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.divider {
+  position: absolute;
+  display: flex;
+  left: 50%;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: var(--dark);
+  transform: translateX(-50%);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 10vw;
+  font-size: 3vw;
+}
+
+.nav-menu li {
+  margin-right: 0.5vw;
+}
+
+.nav-menu li:last-child {
+  margin-right: 0;
+}
+.state {
+  margin-right: 4vw;
+  white-space: nowrap;
+}
+.nav-right {
+  margin-left: 10vw;
+}
+.nav-left {
+  margin-left: 3vw;
+}
+.conected h4 {
+  color: #27AE60;
+  font-size: 2vw;
+  font-weight: 700;
+  position: relative;
+  margin: 0 1vw;
+  display: flex;
+  align-items: center;
+}
+.state h4 {
+  color: #f39c12;
+  font-size: 2vw;
+  font-weight: 700;
+  position: relative;
+  margin: 0 1vw;
+  display: flex;
+  align-items: center;
+}
+.menu {
+  display: none;
+}
+
+.dot-con {
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: #e74c3c;
+  vertical-align: middle;
+}
+.dot-state {
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: transparent;
+  border: 2px solid #f39c12;
+  vertical-align: middle;
+}
+.title {
+  text-align: center;
+  padding: 20px 0px;
+}
+
+.title h1 {
+  font-size: 3vw;
+  color: var(--dark);
+  font-weight: 485;
+}
+.circle {
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: #f39c12;
+  vertical-align: middle;
+}
+
+#opName {
+  font-size: 25px;
+}
+
+.update {
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  margin-top: 1%;
+  font-size: 15px;
+}
+input::placeholder {
+  font-weight: 700;
+  font-size: 120%;
+}
+.search input[type="text"] {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" width="34" height="34" fill="none" stroke="%23707070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+  background-repeat: no-repeat;
+  background-position: 3% center;
+  background-size: 1.75vw;
+  text-align: center;
+  /* font-size: 20px !important; */
+}
+
+#searchInput {
+  height: 4vh !important;
+  width: 30vw !important;
+  margin-top: 50px !important;
+}
+
+.operation {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  margin-top: 5%;
+  font-size: 3vw;
+}
+.operation .line {
+  flex: 1;
+  height: 3px;
+  background-color: var(--dark);
+  margin: 0 2.5%;
+}
+.operation h3 {
+  margin: 0 2%;
+}
+
+.ol-zoom-in,
+.ol-zoom-out {
+  line-height: 8px !important; /* Centraliza o ícone verticalmente */
+  font-size: 8px !important; /* Ajusta o tamanho da fonte */
+}
+
+.ol-attribution {
+  font-size: 1px; /* Tamanho da fonte do texto de atribuição */
+  visibility: collapse;
+}
+.ol-attribution a {
+  font-size: 1px; /* Tamanho da fonte dos links de atribuição */
+  visibility: collapse;
+}
+.button {
+  width: 20vw;
+  margin: 5px 18px;
+  margin-bottom: 40px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 24px;
+  padding: 0.5% 4%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #707070;
+}
+
+.btn-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #27ae60;
+}
+.btn-subtitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #707070;
+}
+
+#buttonsContainer {
+  margin: 0 auto;
+  margin-top: 6%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-title {
+  margin-bottom: 1vh;
+}
+
+.sensor-card,
+.sensor-card2,
+.sensor-card3 {
+  width: 20%;
+  height: 20%;
+  background-color: #f0f0f0;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: -5%;
+  margin-right: 2%;
+}
+
+.grain-type {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.current-measurements {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #707070;
+}
+
+.graph-horizontal {
+  display: flex;
+}
+
+.sensor-card .sensor-info {
+  text-align: center;
+}
+
+.sensor-card .sensor-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sensor-card .sensor-info p {
+  font-size: 18px;
+}
+
+.svg-item {
+  width: 250px;
+  height: 250px;
+  font-size: 16px;
+  margin: 0 auto;
+  animation: donutfade 1s;
+}
+
+#map {
+  width: 250px;
+  height: 250px;
+}
+
+@keyframes donutfade {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.donut-ring {
+  stroke: #ebebeb;
+}
+
+.donut-segment {
+  transform-origin: center;
+  stroke: #27AE60;
+}
+
+.donut-segment-2 {
+  stroke: #1abc9c;
+}
+
+.donut-segment-3 {
+  stroke: #e74c3c;
+}
+
+.donut-segment-4 {
+  stroke: #ed1e79;
+}
+
+.segment-1 {
+  fill: #ccc;
+}
+.segment-2 {
+  fill: aqua;
+}
+.segment-3 {
+  fill: #1abc9c;
+}
+.segment-4 {
+  fill: #ed1e79;
+}
+
+.donut-percent {
+  animation: donutfadelong 1s;
+}
+
+@keyframes donutfadelong {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes donut1 {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+  100% {
+    stroke-dasharray: 10, 90;
+  }
+}
+
+@keyframes donut2 {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+  100% {
+    stroke-dasharray: 20, 80;
+  }
+}
+
+@keyframes donut3 {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+  100% {
+    stroke-dasharray: 1, 99;
+  }
+}
+
+.donut-text {
+  font-family: Arial, Helvetica, sans-serif;
+  fill: #27AE60;
+}
+.donut-text-1 {
+  fill: #1abc9c;
+}
+.donut-text-2 {
+  fill: #e74c3c;
+}
+.donut-text-3 {
+  fill: #ed1e79;
+}
+
+.donut-label {
+  font-size: 0.28em;
+  font-weight: 700;
+  line-height: 1;
+  fill: #000;
+  transform: translateY(0.25em);
+}
+
+.donut-percent {
+  font-size: 0.35em;
+  line-height: 1;
+  transform: translateY(0.5em);
+  font-weight: bold;
+}
+
+.donut-data {
+  font-size: 0.17em;
+  line-height: 1;
+  transform: translateY(0.5em);
+  text-align: center;
+  text-anchor: middle;
+  color: #707070;
+  fill: #707070;
+  animation: donutfadelong 1s;
+}
+
+html {
+  text-align: center;
+}
+.svg-item {
+  max-width: 100%;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1200px) {
+  .graph-horizontal {
+    flex-direction: column;
+  }
+}
+@media (max-height: 460px) {
+  .navigation {
+    height: 10%;
+  }
+
+  #map
+  {
+    pointer-events: none;
+  }
+}
+@media (max-width: 590px) {
+  .navigation {
+    height: 7%;
+  }
+
+  .button {
+    width: 80vw;
+  }
+}
+@media (max-width: 785px) {
+  .search input[type="text"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="%23707070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+    background-repeat: no-repeat;
+    background-position: 3% center;
+  }
+
+  .operation h3 {
+    font-size: 200%;
+  }
+
+  h2 {
+    padding-top: 3%;
+    padding-bottom: 5%;
+  }
+}
