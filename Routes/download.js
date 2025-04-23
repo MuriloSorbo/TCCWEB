@@ -5,49 +5,39 @@ const Router = express.Router();
 
 Router.get('/machineStatus', async (req, res) => 
 {
-    const code = req.session.code;
+    const machineCode = req.session.machineCode;
 
-    if (code == undefined || !dbConnection.connections[code]) res.status(401).send();
-    else
-    {
-        try
+    try
         {
-            const data = await dbConnection.connections[code].connection.machineStatus.find();
+            const connection = await dbConnection.connections[machineCode].connection;
+             
+            const data = await connection.machineStatus.find();
 
-            res.json(data).send();
+            res.json(data)
         }
-        catch{ res.status(401).send(); }
-    }
+        catch (ex) { console.log(ex);
+         res.sendStatus(401); }
 });
 
 Router.get('/operationslist', async (req, res) => 
 {
-    const code = req.session.code;
+    const machineCode = req.session.machineCode;
 
-    if (code == undefined || !dbConnection.connections[code]) res.status(401).send();
-    else
-    {
-        try
+    try
         {
-            const data = await dbConnection.connections[code].connection.operationsList.find();
+            const data = await dbConnection.connections[machineCode].connection.operationsList.find();
 
-            res.json(data).send();
-        } catch{}
-    }
+            res.json(data);
+        } catch{ res.sendStatus(401); }
 });
 
 Router.get('/operationsLog/:opName', async (req, res) => 
 {
-    const code = req.session.code;
-    const opName = req.params.opName;
+    const machineCode = req.session.machineCode;
 
-    if (code == undefined || !dbConnection.connections[code]) res.status(401).send();
-    else
-    {
-        const data = await dbConnection.connections[code].connection.operationsLog.find({opName: opName});
+    const data = 
 
-        res.json(data);
-    }
+    res.json(data);
 });
 
 module.exports = Router;

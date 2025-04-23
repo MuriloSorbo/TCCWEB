@@ -19,10 +19,9 @@ Router.post('/machineStatus/:code', async (req, res) =>
         {
             await MachineStatus.findOneAndUpdate({}, {
                 connected: true,
-                inOperation: status.inOperation,
                 operationName: status.operationName,
                 lstTemp: status.lstTemp,
-                lstTempSolo: status.lstTempSolo,
+                lstElectricalCondictivity: status.lstElectricalCondictivity,
                 lstHum: status.lstHum,
                 lstGeo: status.lstGeo,
                 lstHumAir: status.lstHumAir,

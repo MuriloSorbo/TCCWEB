@@ -19,7 +19,6 @@ const maxShow = 10;
 
 document.addEventListener("DOMContentLoaded", function () {
   setInterval(askRoutine, 5000);
-  setOperation(false, "");
   askRoutine();
 });
 
@@ -57,21 +56,20 @@ function dealRequest(response) {
   setAirHumidity(json.lstHumAir);
   setMapPos(json.lstGeo.split(",")[0], json.lstGeo.split(",")[1]);
   changeUpdatedTime(json.updatedAt);
-  if (!setName) {
-    document.getElementById("MACHINE").contentEditable = true;
-    document.getElementById("MACHINE").textContent = json.machineName;
-    document.getElementById("MACHINE").contentEditable = false;
-    setName = true;
-  }
+  
+  
+  
 
+  document.getElementById("MACHINE").textContent = json.machineName;
   setConnectionStatus(json.connected);
 
+  
+  setOperation(json.inOperation, json.operationName);
+
+
   if (!json.connected) {
-    setOperation(false, "");
     return;
   }
-
-  setOperation(json.inOperation, json.operationName);
 }
 
 function opList(response) {
@@ -85,6 +83,26 @@ function opList(response) {
 
     createButton(operation.opName, convertDateTimeString(operation.dateTime));
   }
+}
+
+function StartOperation()
+{
+  const opName = document.getElementById('opNameSend').value;
+  
+  const request = new XMLHttpRequest();
+  const url = '/operation/start/' + opName;
+  
+  request.open('POST', url);
+  request.send();
+}
+
+function StopOperation()
+{
+  const request = new XMLHttpRequest();
+  const url = '/operation/stop';
+  
+  request.open('POST', url);
+  request.send();
 }
 
 function setTemperature(val) {
@@ -215,6 +233,7 @@ function setOperation(inOperation, opName) {
     document.getElementById("dotState").style.background = "#f39c12";
   } else {
     curOpName = "";
+    
     document.getElementById("title").style.visibility = "hidden";
     document.getElementById("opState").innerHTML = "Fora de Operação";
     document.getElementById("dotState").style.background = "transparent";

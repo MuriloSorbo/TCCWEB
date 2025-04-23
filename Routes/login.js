@@ -4,14 +4,14 @@ const dbConnection = require('../Database/connection')
 
 const Router = express.Router();
 
-Router.get('/', (req, res) => 
+Router.get('/', async (req, res) => 
 {
     const code = req.session.code;
 
-    if      (code == 'admin1234') res.redirect('/adm');
-    else if (dbConnection.connections[code]) res.redirect('/main');
+    const login = await dbConnection.usersConnection.findOne({accessCode: code})
 
-    else res.sendFile(path.join(__dirname, '../Pages/LoginPage/index.html'));
+    if (login == null) res.sendFile(path.join(__dirname, '../Pages/LoginPage/index.html'));
+    else res.redirect('/dashboard');
 });
 
 Router.post('/', (req, res) => 

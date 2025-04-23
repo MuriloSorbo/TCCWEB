@@ -5,10 +5,7 @@ const dbConnection = require('../Database/connection');
 const Router = express.Router();
 
 Router.get('/', (req, res) => {
-    const code = req.session.code;
-
-    if (code == undefined || code != 'admin1234') res.redirect('/login');
-    else res.sendFile(path.join(__dirname, '../Pages/AdmPage/index.html'));
+    res.sendFile(path.join(__dirname, '../Pages/AdmPage/index.html'));
 })
 
 Router.get('/connections', async (req, res) => {
