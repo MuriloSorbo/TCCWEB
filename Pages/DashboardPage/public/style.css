@@ -1,0 +1,393 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --red: #27ae60;
+  --white: #ffffff;
+  --dark: #707070;
+}
+
+body {
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+/* .dashboard-header {
+  background-color: #E0E0E0;
+  display: flex;
+  height: 120px;
+  color: white;
+  padding: 0 4rem;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-header img {
+  height: 100%;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+  opacity: 0.9;
+} */
+
+
+i {
+  color: var(--dark);
+}
+i.material-icons {
+  font-size: 2.25vw;
+  margin-top: 1.3vw;
+  margin-left: 2vw;
+  cursor: pointer;
+}
+
+.logo2 {
+  width: 15vw;
+}
+
+.showAll {
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.showAll:hover {
+  color: #1233c5;
+}
+
+
+.navigation {
+  background: #e0e0e0;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: all 0.5s;
+  /* position: fixed; */
+  top: 0;
+  z-index: 1000;
+
+  color: var(--red);
+  font-size: 1.7rem;
+  font-weight: 600;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+.divider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.divider {
+  position: absolute;
+  display: flex;
+  left: 50%;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: var(--dark);
+  transform: translateX(-50%);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: 10vw;
+  font-size: 3vw;
+}
+
+.nav-menu li {
+  margin-right: 0.5vw;
+}
+
+.nav-menu li:last-child {
+  margin-right: 0;
+}
+.state {
+  margin-right: 4vw;
+  white-space: nowrap;
+}
+.nav-right {
+  margin-left: 10vw;
+}
+.nav-left {
+  margin-left: 3vw;
+}
+.conected h4 {
+  color: #27ae60;
+  font-size: 2vw;
+  font-weight: 700;
+  position: relative;
+  margin: 0 1vw;
+  display: flex;
+  align-items: center;
+}
+.state h4 {
+  color: #f39c12;
+  font-size: 2vw;
+  font-weight: 700;
+  position: relative;
+  margin: 0 1vw;
+  display: flex;
+  align-items: center;
+}
+.menu {
+  display: none;
+}
+
+.dot-con {
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: #e74c3c;
+  vertical-align: middle;
+}
+.dot-state {
+  display: inline-block;
+  width: 1vw;
+  height: 1vw;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: transparent;
+  border: 2px solid #f39c12;
+  vertical-align: middle;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 2rem;
+}
+
+.operation-controls {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.operation-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-start {
+  background-color: #2d5a27;
+  color: white;
+}
+
+.btn-start:hover {
+  background-color: #234620;
+}
+
+.btn-stop {
+  background-color: white;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.btn-stop:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+h2 {
+  color: #2d5a27;
+  margin: 2rem 0 1rem;
+}
+
+#map {
+  height: 400px;
+  width: 80%;
+  margin: 150px auto 0 auto;
+  border: 3px solid #234620;
+  border-radius: 10px;
+}
+
+#machines {
+  background-color: red;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.machine-card {
+  background-color: rgb(238, 238, 238);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 30px;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  font-family: "Poppins";
+}
+
+.map-card {
+  width: 350px;
+  height: 300px;
+}
+
+.machine-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.machine-name {
+  /* background-color: red; */
+  /* width: 300px; */
+  display: flex;
+  width: 95%;
+  align-items: center;
+  justify-content: space-between;
+  /* gap: 100px; */
+}
+
+.machine-name a {
+  margin-left: 5px;
+  color: #2d5a27;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 20px;
+
+  font-family: "Poppins";
+}
+
+.machine-name p {
+  font-weight: 600;
+  font-family: "Poppins";
+}
+
+.machine-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  margin-left: 4px;
+  border-radius: 100px;
+
+  font-size: 13px;
+  font-weight: 200;
+}
+
+.status-active {
+  background-color: rgb(145, 255, 131);
+  color: #234620;
+}
+
+.status-inactive {
+  background-color: rgb(255, 68, 90);
+  color: #440000;
+}
+
+.machine-card button {
+  all: unset;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid red;
+  color: red;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.machine-card button:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  
+  .navigation {
+    height: 20vh;
+  }
+
+  .operation-controls {
+    flex-direction: column;
+  }
+
+  .operation-input {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  #map {
+    width: 95%;
+  }
+
+  .operation-input {
+    min-width: 0;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .machine-card {
+    width: 100%;
+  }
+
+  .map-card {
+    width: 100%;
+  }
+
+  .machine-name {
+    flex-wrap: wrap;
+  }
+
+  .machine-name a {
+    margin-left: 0;
+  }
+
+  .machine-status {
+    margin-left: 0;
+  }
+}
