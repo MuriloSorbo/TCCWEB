@@ -88,22 +88,37 @@ async function addMachine(machineCode) {
       let startTime = machine.inOperation ? new Date(machine.operationStartTime) : null;
       const timerId = `timer-${machineCode}`;
 
+      // Exemplo de dados da máquina
+      // const machine = {
+      //   code: 'XY123',
+      //   name: 'Máquina XY',
+      //   mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58544.82331172776!2d-47.4873856!3d-23.494656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c5f51a01916eaf%3A0x95fb7a34d2c347e9!2sTauste%20Itavuvu!5e0!3m2!1sen!2sbr!4v1746103284497!5m2!1sen!2sbr',
+      //   timer: '00:17:54',
+      //   inOperation: true,
+      //   operationName: 'Corte'
+      // };
+
+
       document.getElementById('machines').innerHTML += `
         <div class="machine-card">
-          <a href='/main/${machineCode}' class="machine-link">
-            <div class="machine-header" style="display: flex; justify-content: space-between; align-items: center;">
-              <h3>${machine.machineName}</h3>
-              <span id="${timerId}" class="timer">${startTime ? 'Calculando...' : ''}</span>
-            </div>
-            <span class="status-badge ${machine.inOperation ? 'status-active' : 'status-inactive'}">
-              ${machine.inOperation ? 'Em operação: ' + machine.operationName : 'Inativa'}
-            </span>
-          </a>
-          <button onclick="${machine.inOperation ? `stopMachine('${machineCode}')` : `startMachine('${machineCode}')`}" 
-                  class="btn ${machine.inOperation ? 'btn-stop' : 'btn-start'}">
-            ${machine.inOperation ? 'Parar' : 'Iniciar'}
-          </button>
-        </div>
+      <div class="map-card">
+        <iframe
+          src="${machine.mapSrc}"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="machine-name">
+        <a href="/main/${machine.code}">${machine.machineName}</a>
+        <p>${machine.timer}</p>
+      </div>
+      <div class="machine-status ${machine.inOperation ? 'status-active' : 'status-inactive'}">
+        <h4>${machine.inOperation ? 'Em operação: ' + machine.operationName : 'Inativa'}</h4>
+      </div>
+      <button onclick="${machine.inOperation ? `stopMachine('${machine.code}')` : `startMachine('${machine.code}')`}">
+        ${machine.inOperation ? 'Parar' : 'Iniciar'}
+      </button>
+    </div>
       `;
 
       if (startTime) {
