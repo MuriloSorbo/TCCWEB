@@ -102,18 +102,13 @@ async function addMachine(machineCode) {
       document.getElementById('machines').innerHTML += `
         <div class="machine-card">
       <div class="map-card">
-        <iframe
-          src="${machine.mapSrc}"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
+        <div class="map" id="map${machineCode}"></div>
       </div>
       <div class="machine-name">
-        <a href="/main/${machine.code}">${machine.machineName}</a>
-        <p>${machine.timer}</p>
+        <a href="/main/${machineCode}">${machine.machineName}</a>
       </div>
       <div class="machine-status ${machine.inOperation ? 'status-active' : 'status-inactive'}">
-        <h4>${machine.inOperation ? 'Em operação: ' + machine.operationName : 'Inativa'}</h4>
+        <h4>${machine.inOperation ? 'Em operação: ' + machine.operationName : 'Fora de operação'}</h4>
       </div>
       <button onclick="${machine.inOperation ? `stopMachine('${machine.code}')` : `startMachine('${machine.code}')`}">
         ${machine.inOperation ? 'Parar' : 'Iniciar'}
@@ -121,22 +116,56 @@ async function addMachine(machineCode) {
     </div>
       `;
 
-      if (startTime) {
-        setInterval(() => {
-          const now = new Date();
-          const diff = new Date(now - startTime);
-          const hours = String(diff.getUTCHours()).padStart(2, '0');
-          const minutes = String(diff.getUTCMinutes()).padStart(2, '0');
-          const seconds = String(diff.getUTCSeconds()).padStart(2, '0');
-          const timerElement = document.getElementById(timerId);
-          if (timerElement) {
-            timerElement.textContent = `${hours}:${minutes}:${seconds}`;
-          }
-        }, 1000);
-      }
+      setMapPos(machine.lstGeo.split(',')[0], machine.lstGeo.split(',')[1], 'map' + machineCode);
     }
   });
   request.send();
+}
+
+function setMapPos(lat, long, target) {
+  // Se o mapa ainda não foi criado, crie-o
+  
+    // Criar o mapa
+    const map = new ol.Map({
+      target: target,
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+        }),
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([long, lat]),
+        zoom: 15,
+      }),
+    });
+
+    // Criar uma fonte de vetores para o marcador
+    markerSource = new ol.source.Vector();
+
+    // Criar um estilo para o marcador
+    var markerStyle = new ol.style.Style({
+      image: new ol.style.Icon({
+        anchor: [0.5, 1],
+        src: "/assets/marker.png", // Ícone do marcador
+      }),
+    });
+
+    // Criar um recurso (feature) para o marcador
+    marker = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([long, lat])),
+    });
+    marker.setStyle(markerStyle);
+
+    // Adicionar o marcador à fonte de vetores
+    if (lat * long != 0) markerSource.addFeature(marker);
+
+    // Criar uma camada de vetores para o marcador
+    var markerLayer = new ol.layer.Vector({
+      source: markerSource,
+    });
+
+    // Adicionar a camada de vetores ao mapa
+    map.addLayer(markerLayer);
 }
 
 // Funções auxiliares adicionadas:
