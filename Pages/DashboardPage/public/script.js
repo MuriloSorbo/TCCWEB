@@ -101,16 +101,13 @@ async function addMachine(machineCode) {
 
       document.getElementById('machines').innerHTML += `
         <div class="machine-card">
-      <div class="map-card">
-        <div class="map" id="map${machineCode}"></div>
-      </div>
       <div class="machine-name">
         <a href="/main/${machineCode}">${machine.machineName}</a>
       </div>
       <div class="machine-status ${machine.inOperation ? 'status-active' : 'status-inactive'}">
         <h4>${machine.inOperation ? 'Em operação: ' + machine.operationName : 'Fora de operação'}</h4>
       </div>
-      <button onclick="${machine.inOperation ? `stopMachine('${machine.code}')` : `startMachine('${machine.code}')`}">
+      <button style="visibility : ${machine.inOperation ? 'visible' : 'hidden'}; !important" onclick="${machine.inOperation ? `stopMachine('${machineCode}')` : `startMachine('${machineCode}')`}">
         ${machine.inOperation ? 'Parar' : 'Iniciar'}
       </button>
     </div>
@@ -181,7 +178,10 @@ function startMachine(code) {
 
 function stopMachine(code) {
   const request = new XMLHttpRequest();
-  request.open('POST', `/operation/stop/${code}`);
+  const url = `/operation/stop/${code}`
+  console.log(url);
+  
+  request.open('POST', url);
   request.addEventListener('load', function () {
     makeRequest();
   });

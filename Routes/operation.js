@@ -71,6 +71,23 @@ Router.post('/start/:opName', async (req, res) => {
              res.status(401).send();}
 });
 
+Router.post('/stop/:machineCode', async (req, res) => {
+    const machineCode = req.params.machineCode;
+    
+    const connection = await dbConnection.connections[machineCode].connection;
+    
+            try
+            {
+                 await connection.machineStatus.findOneAndUpdate({}, {
+                    inOperation: false
+                    }, {upsert: true});
+                
+                res.status(200).send();
+        
+            } catch {
+             res.status(401).send();}
+});
+
 Router.post('/stop', async (req, res) => {
     const machineCode = req.session.machineCode;
     
